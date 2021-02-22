@@ -32,7 +32,7 @@ def start_game():
     """
     # write your code inside this function.
 solution = random.randint(1,10)
-print(solution)
+
 
 attempts = 2
 
