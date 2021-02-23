@@ -12,7 +12,6 @@ def start_game():
     
     solution = random.randint(1,10)
 
-
     attempts = 2
 
     welcome = ("Hi! Welcome to the Number Guessing Game!!!")
@@ -22,7 +21,6 @@ def start_game():
     welcome_message = welcome_boarder + "\n" + welcome + "\n" + welcome_boarder 
 
     print(welcome_message)
-
 
     close =("Thanks for playing!!!")
 
