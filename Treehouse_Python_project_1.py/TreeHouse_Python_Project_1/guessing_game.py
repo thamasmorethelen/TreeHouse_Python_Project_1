@@ -12,7 +12,7 @@ def start_game():
     
     solution = random.randint(1,10)
 
-    attempts = 2
+    attempts = 1
 
     welcome = ("Hi! Welcome to the Number Guessing Game!!!")
 
