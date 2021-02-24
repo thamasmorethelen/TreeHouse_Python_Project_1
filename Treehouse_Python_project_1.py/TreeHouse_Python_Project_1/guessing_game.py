@@ -1,58 +1,65 @@
+
 """
 Python Web Development Techdegree
 Project 1 - Number Guessing Game
 --------------------------------
+
 """
 
 import random
 import math
-
+def messaging(message):
+    boarder = "-" * len(message)
+    complete_message = boarder + "\n" + message + "\n" + boarder
+    print(complete_message)
 
 def start_game():
-    
+   
     solution = random.randint(1,10)
 
-    attempts = 1
+    attempts = 0
 
-    welcome = ("Hi! Welcome to the Number Guessing Game!!!")
+    welcome = "Hi! Welcome to the Number Guessing Game!!!"
 
-    welcome_boarder = "-" * len(welcome)
+    close ="Thanks for playing!!!"
 
-    welcome_message = welcome_boarder + "\n" + welcome + "\n" + welcome_boarder 
-
-    print(welcome_message)
-
-    close =("Thanks for playing!!!")
-
-    close_boarder = "-" * len(close)
-
-    closing_message = close_boarder + "\n" + close + "\n" + close_boarder
-    try:
-        guess = int(input("Pick a number between 1 and 10: "))
-    except ValueError:
-        print("Oh No! That's not a valid value! Try again.")
-    else:
-        if guess == solution:
-            print("Awesome Sause! You got it in {} attempt!".format(attempts))
-            print(closing_message)
-        while guess != solution:
-            try:
-                if guess < solution:
-                    print("It's higher")
-                    guess = int(input("Try again: "))
-            except ValueError:
-                print("Invalid Value, please try again")
-            try:
-                if guess > solution:
-                    print("It's lower")
-                    guess = int(input("Try again: "))
-            except ValueError:
-                print("Invalid Value, please try again")
-            attempts += 1
+    messaging(welcome)
+    
+    guess = int("0")
+    
+    while guess != solution:
+        attempts += 1
+        try:
+            guess = int(input("Pick a number between 1 and 10: "))
+            
             if guess == solution:
-                print("Great job! You got it in {} attempts!".format(attempts))
-                print(closing_message)
-
+                print("Awesome Sause! You got it in {} attempt!".format(attempts))
+                messaging(close)
+            
+        except ValueError:
+            print("Oh No! That's not a valid value!")
+            
+        else:
+            while guess != solution:
+                attempts += 1    
+                try:
+                    if guess < solution:
+                        print("It's higher")
+                        guess = int(input("Try again: "))
+                except ValueError:
+                    print("Invalid Value, please try again")
+                try:
+                    if guess > solution:
+                        print("It's lower")
+                        guess = int(input("Try again: "))
+                except ValueError:
+                    print("Invalid Value, please try again")
+                
+                    
+                if guess == solution:
+                    print("Awesome Sause! You got it in {} attempt!".format(attempts))
+                    messaging(close)
+                    
 
 start_game()
 
