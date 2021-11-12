@@ -1,49 +1,55 @@
 import random
-
-guess = " "
-play_again = " "
-welcome = ("Hi! Welcome to the Number Guessing Game!!!")
-close = ("Thanks for playing!!!")
+import sys
 
 
-def welcome_closing(text):
-    boarder = "-" * len(text)
-    message = f" {boarder}\n {text}\n {boarder}"
-    print(message)
+def display_message(message):
+    boarder = "=" * len(message)
+    print(f"\n\n{boarder} \n{message} \n{boarder}\n")
+
+
+display_message('Welcome to the Number Guessing Game!')
 
 
 def start_game():
-
-    solution = random.randint(1, 10)
-    attempts = 0
-    welcome_closing(welcome)
+    random_num = random.choice(range(1, 11))
+    attempts = 1
+    highscore = []
     guess = ' '
-
-    while guess != solution:
-
+    play_again = True
+    print('A random number has been generated your goal is to guess it!')
+    print(random_num)
+    while play_again:
         try:
-            attempts += 1
-            if attempts == 2:
-                guess = int(input("Pick a number between 1 and 10: "))
-                attempts += 1
+            guess = input('Go ahead and guess: ')
+            guess = int(guess)
             if guess not in range(1, 11):
-                print("Please enter a number in the given range, 1-10")
-                guess = int(input("Try again: "))
-
-            if guess < solution:
-                print("It's higher")
-                guess = int(input("Try again: "))
-
-            if guess > solution:
-                print("It's lower")
-                guess = int(input("Try again: "))
-
-            if guess == solution:
-                print(f"Great job! You got it in {attempts} attempts!")
-                welcome_closing(close)
-
+                attempts += 1
+                print("Hey man that's not in the range. Try again.") 
+            elif guess == random_num:
+                highscore.append(attempts)
+                print(f"You Win! It took you {attempts} nice job!")
+                attempts += 1
+                play_again = input("Do you want to play again (Y)es/(N)o: ").upper()
+                if play_again == "YES" or play_again == 'Y':
+                    attempts = 0
+                    print(f"\nThe current high score is {min(highscore)}")
+                    start_game()
+                if play_again == "NO" or play_again == "N":
+                    print("No? Ok have a nice day!")
+                    play_again = False
+                    sys.exit()
+            elif guess > random_num:
+                attempts += 1
+                print('Too high! Try again!')
+            elif guess < random_num:
+                attempts += 1
+                print('Too low! Try again!')
+            else:
+                attempts += 1
+                print('You lose!')
         except ValueError:
-            print("Invalid Value, please try again.")
+            attempts += 1
+            print("Easy tiger numbers only please!")
 
 
 start_game()
