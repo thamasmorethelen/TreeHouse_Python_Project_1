@@ -34,10 +34,12 @@ def start_game():
                     attempts = 0
                     print(f"\nThe current high score is {min(highscore)}")
                     start_game()
-                if play_again == "NO" or play_again == "N":
+                elif play_again == "NO" or play_again == "N":
                     print("No? Ok have a nice day!")
                     play_again = False
                     sys.exit()
+                else: 
+                    play_again = input("Do you want to play again (Y)es/(N)o: ").upper()
             elif guess > random_num:
                 attempts += 1
                 print('Too high! Try again!')
